@@ -20,7 +20,7 @@ If you have your dataset ready (e.g., a .csv file from ClinicalTrials.gov), you 
 
     from google.colab import files
 
-      # Upload the dataset
+    # Upload the dataset
     uploaded = files.upload()
 
     # After uploading, load the dataset using pandas
@@ -61,7 +61,7 @@ Step 4: Embedding Generation with BioBERT
 In Google Colab, you can load BioBERT using the transformers library, which provides pretrained models.
  Import the required model and tokenizer:
 
-      from transformers import AutoTokenizer, AutoModel
+    from transformers import AutoTokenizer, AutoModel
     import torch
 
     # Load BioBERT
@@ -86,7 +86,7 @@ You can use K-Means or DBSCAN to cluster your trials based on the embeddings.
 
 Install and use K-Means for clustering:
 
-      from sklearn.cluster import KMeans
+    from sklearn.cluster import KMeans
     import numpy as np
 
 # Combine the embeddings
@@ -103,8 +103,8 @@ Now, you can use FAISS to perform fast similarity search.
 import faiss
 
 # Build the FAISS index for efficient similarity search
-      dimension = embeddings.shape[1]
-        index = faiss.IndexFlatL2(dimension)
+    dimension = embeddings.shape[1]
+    index = faiss.IndexFlatL2(dimension)
     index.add(embeddings)
 
     # Query example: You can query using a specific trial or text
@@ -121,16 +121,16 @@ Step 7: Evaluation
 
 You can evaluate the retrieved trials using precision, recall, and F1-score by comparing them to manually labeled relevant trials.
 
-from sklearn.metrics import precision_score, recall_score, f1_score
+    from sklearn.metrics import precision_score, recall_score, f1_score
 
-# Example true labels and predictions (replace with actual relevant labels)
-      true_labels = [1, 0, 1, 1, 0, 0, 1, 1, 0, 1]  # Ground truth relevance
-        predicted_labels = [1, 0, 1, 1, 0, 0, 1, 0, 0, 1]  # Predicted relevance
+    # Example true labels and predictions (replace with actual relevant labels)
+    true_labels = [1, 0, 1, 1, 0, 0, 1, 1, 0, 1]  # Ground truth relevance
+    predicted_labels = [1, 0, 1, 1, 0, 0, 1, 0, 0, 1]  # Predicted relevance
 
-# Compute metrics
-      precision = precision_score(true_labels, predicted_labels)
-      recall = recall_score(true_labels, predicted_labels)
-      f1 = f1_score(true_labels, predicted_labels)
+    # Compute metrics
+    precision = precision_score(true_labels, predicted_labels)
+    recall = recall_score(true_labels, predicted_labels)
+    f1 = f1_score(true_labels, predicted_labels)
 
     print(f"Precision: {precision}, Recall: {recall}, F1-Score: {f1}")
 
